@@ -2,9 +2,13 @@ const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+
+//For using cloudinary create your cloudinary account
 var cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
+	//for configuring cloudinary add your CLOUD_NAME, API_KEY
+	//and API_SECRET as environment variables in .env file
 	cloud_name: process.env.CLOUD_NAME,
 	api_key: process.env.API_KEY,
 	api_secret: process.env.API_SECRET,
@@ -21,42 +25,49 @@ app.get('/', (req, res) => {
 });
 
 const corsOptions = {
-	'origin':'https://file-upload-client.vercel.app',
-	'methods': 'POST',
-	'allowedHeaders': ['Content-Type']
-}
+	//add your frontend localhost url if you want to restrict any other origin
+	origin: ['http://localhost:3000', 'https://file-upload-client.vercel.app'],
+	methods: 'POST',
+	allowedHeaders: ['Content-Type'],
+};
 
 app.post('/upload', cors(corsOptions), (req, res) => {
 	if (req.files === null) {
-		res.status(400).send({ message: `File Not Uploaded` });
+		res.status(400).send({ message: `Image were Not Uploaded` });
 	}
 
 	if (req.files.file.size > 5000000) {
-		res
-			.status(404)
-			.send({
-				message: `File size too Large please upload smaller size Image`,
-			});
+		res.status(404).send({
+			message: `File size too Large please upload smaller size Image`,
+		});
 	}
 
+	//Changing file name to be unique
 	const file = req.files.file;
 	file.name = file.name.replaceAll(' ', '_');
 	file.name = Date.now().toString() + file.name;
 
+	//This is important step We get data in Buffer array format.(No URL or File Path)
+	//We have to convert it into raw foramt which is required for cloudinary.
+	//Below we converting Buffer data to base64 string with prefix 'data:image/png;base64'.
+	//Prefix allow cloudinary to read string data as raw data and process it.
 	const img = `data:image/png;base64,${file.data.toString('base64')}`;
 
 	try {
 		cloudinary.uploader
 			.upload(img, {
 				resource_type: 'raw',
-				format: 'jpg',
 				use_filename: true,
+				public_id: file.name,
 				tags: ['devChallanges.io'],
 			})
 			.then((result) => {
+				//returning response to uploadUI
+				// from where request is made to this server
 				res.status(201).send({
 					fileName: file.name,
 					filePath: result.url,
+					message: 'success',
 				});
 			});
 	} catch (err) {

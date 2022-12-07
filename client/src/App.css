@@ -18,6 +18,25 @@ body {
 	align-items: center;
 	min-height: 100vh;
 }
+.message__container{
+	width: 402px;
+	height: 40px;
+	text-align: center;
+	position: absolute;
+	top: 5%;
+}
+.error__message {
+	color: rgb(4, 182, 4);
+	transition: 400ms ease-in;
+}
+
+.remove__message{
+	padding: 1rem;
+	text-align: right;
+	color: green;
+	font-weight: 600;
+	cursor: pointer;
+}
 
 .container {
 	/* position: absolute; */
@@ -364,11 +383,10 @@ body {
 	line-height: 17px;
 	/* identical to box height */
 	text-align: center;
-	color: #A9A9A9 !important;
+	color: #a9a9a9 !important;
 }
 .footer a {
 	text-decoration: none;
 	font-weight: 900;
 	color: #939292 !important;
-
 }

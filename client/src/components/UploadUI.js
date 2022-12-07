@@ -4,7 +4,7 @@ import ChooseFile from './ChooseFile';
 import LoadingView from './Loading';
 import UploadView from './UploadView';
 
-function UploadUI({ BaseURL }) {
+function UploadUI({ BaseURL, setMessage }) {
 	let [isLoading, setIsLoading] = React.useState(false);
 	let [uploadedImage, setUploadedImage] = React.useState(null);
 	let [image, setImage] = React.useState(null);
@@ -21,6 +21,7 @@ function UploadUI({ BaseURL }) {
 			});
 
 			const { fileName, filePath } = res.data;
+			
 			setUploadedImage({ fileName, filePath });
 		} catch (error) {
 			if (error.response.status === 500) {
@@ -46,7 +47,7 @@ function UploadUI({ BaseURL }) {
 	return (
 		<>
 			{uploadedImage ? (
-				<UploadView uploadedImage={uploadedImage} />
+				<UploadView uploadedImage={uploadedImage} setUploadedImage={setUploadedImage} setMessage={setMessage} />
 			) : (
 				<ChooseFile setImage={setImage} />
 			)}
