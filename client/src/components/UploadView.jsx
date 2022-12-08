@@ -23,13 +23,13 @@ function UploadView({uploadedImage, setUploadedImage, setMessage}) {
 				<button className='uploaded__container__link__copy-btn' onClick={(e)=>{
 					navigator.clipboard.writeText(filePath)
 					e.target.innerHTML = 'Copied';
-					setMessage('👉Copied Successfully ✅ Going Home 🙌 at any second')
+					setMessage('👉Copied Successfully!🥳 Going Home 🙌 at any second')
 					e.target.disabled = true;
 					console.log("clicked");
 					setTimeout(()=>{
 						setUploadedImage(null)
 						setMessage('')
-					},4000)
+					},3000)
 				}}>Copy Link</button>
 			</div>
 		</div>

@@ -36,9 +36,9 @@ app.post('/upload', cors(corsOptions), (req, res) => {
 		res.status(400).send({ message: `Image were Not Uploaded` });
 	}
 
-	if (req.files.file.size > 5000000) {
+	if (req.files.file.size > 1000000) {
 		res.status(404).send({
-			message: `File size too Large please upload smaller size Image`,
+			message: `File size too Large. Upto 1 MB allowed`,
 		});
 	}
 
@@ -67,7 +67,6 @@ app.post('/upload', cors(corsOptions), (req, res) => {
 				res.status(201).send({
 					fileName: file.name,
 					filePath: result.url,
-					message: 'success',
 				});
 			});
 	} catch (err) {
