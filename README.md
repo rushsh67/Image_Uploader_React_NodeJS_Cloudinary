@@ -39,8 +39,6 @@
 
 ![image](https://user-images.githubusercontent.com/106526534/206289868-ef876dce-44c6-4550-9443-5b71d824db3b.png)
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
 - You can see demo project on https://file-upload-client.vercel.app 
 
 - It was very learnigful experience, learned about API end-points, proxy, environment variables, cors and express.
@@ -65,11 +63,6 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the given user stories.
 
-## How To Use
-
-<!-- Example: -->
-
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
 - User can drag and drop an image to upload it
 - User can choose to select an image from local folder
@@ -84,6 +77,11 @@ NOTE:
 - User can upload image of size only upto 1 MB.
 - Above restrictions are made for limited use of demo resource by users.
 
+## How To Use
+
+<!-- Example: -->
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 ```bash
 # Clone this repository
 $ git clone https://github.com/rushsh67/Image_Uploader_React_NodeJS_Cloudinary.git
